@@ -1,0 +1,39 @@
+<header id="customHeader">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="bag">
+            <span class="material-icons">shopping_bag</span>
+            <!-- <span>ShopKart</span>  -->
+        </button>
+        <span class="custom-spacer"></span>
+        <mat-form-field [floatLabel]="'never'">
+            <input matInput type="search" placeholder="search" class="search-input">
+            <button mat-button mat-icon-button matSuffix>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <span class="custom-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="cart">
+            <mat-icon matBadge="{{BadgeValue}}" matBadgeColor="warn">shopping_cart</mat-icon>
+        </button>
+      </mat-toolbar>
+</header>
+<main id="main">
+    <mat-grid-list class="product" [cols]="breakpoint" rowHeight="2:3" (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let item of productDetails">
+            <mat-card>
+                <img mat-card-image [src]="item.img_url" alt="product">
+                <mat-card-content class="search-result">
+                    <mat-card-subtitle>{{item.name}}</mat-card-subtitle>                    
+                    <mat-card-title class="productTitle">
+                        <span><span>&#8377;</span>{{item.price}}</span>
+                        <span class="custom-spacer"></span>
+                        <span class="off">{{item.discount}}% Off</span>
+                    </mat-card-title>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-flat-button color="primary" class="addcart" (click)="addToCart(item)">Add to Cart</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+</main>
